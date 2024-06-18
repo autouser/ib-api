@@ -16,6 +16,11 @@ func main() {
 	addr := os.Getenv("BACKEND_ADDR")
 	authAddr := os.Getenv("AUTH_ADDR")
 
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte("API"))
+	})
+
 	http.HandleFunc("/backend", func(w http.ResponseWriter, r *http.Request) {
 		username := r.URL.Query().Get("username")
 		password := r.URL.Query().Get("password")
